@@ -1,79 +1,28 @@
 <!DOCTYPE html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width", initial-scale="1.0">
-    <title>OpenStreetMap</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin:0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f0f4f8;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        header h1{
-            margin: 0;
-            font-size: 24px;
-        }
-        #map {
-            flex: 1; /* mengisi sisa ruang antara header dan footer */
-            width: 100vw;
-            height: calc(100vh- 70px- 50px); /* tinggi viewport - tinggi header - tinggi footer */
-            z-index: 1;
-
-        }
-        footer{
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-size: 14px;
-            margin-top: auto;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakiraan Cuaca</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>5 Kecamatan di Kota Malang</h1>
-    </header>
-    <div id="map"></div>
-    <footer>Dibuat oleh Kevin Satria - 22083000120 - FTI Unmer Malang</footer>
+    <h1>Prakiraan Cuaca di Klojen</h1>
 
-    <script>
-        // inisiasi peta dengan fokus kota malang
-        const map = L.map('map').setView([-7.975, 112.633], 12);
-        
-        // tambahkan layer OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            atrribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-            maxZoom: 18,
-            minZoom: 10
-        }).addTo(map);
+    <table>
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Suhu Maksimum (°C)</th>
+                <th>Suhu Minimum (°C)</th>
+                <th>Curah Hujan (mm)</th>
+            </tr>
+        </thead>
+        <tbody id="weatherTable">
+            <!-- Data cuaca akan dimasukkan lewat JavaScript -->
+        </tbody>
+    </table>
 
-        // Data kecamatan di kota malang (nama dan koordinat)
-                const districts = [
-            { name: 'Klojen', coords: [-7.982, 112.630] },
-            { name: 'Blimbing', coords: [-7.939, 112.647] },
-            { name: 'Lowokwaru', coords: [-7.952, 112.611] },
-            { name: 'Sukun', coords: [-8.003, 112.614] },
-            { name: 'Kedungkandang', coords: [-7.978, 112.664] }
-        ];
-
-        // tambahkan marker di setiap kecamatan
-        districts.forEach(district => {
-            L.marker(district.coords)
-                .addTo(map)
-                .bindPopup(`<b>${district.name}</b><br>Lat: ${district.coords[0]}<br>Lon: ${district.coords[1]}`);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
